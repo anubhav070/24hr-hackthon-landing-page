@@ -62,8 +62,15 @@ export function HeroSection() {
           animate={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.5 }}
         >
-          <h1 className="text-8xl md:text-[10rem] font-black tracking-tighter leading-none mb-2 italic"
-            style={{ color: "#fff", textShadow: "4px 4px 0px #B20600, -2px -2px 0px #4E0000" }}>
+          <h1 
+    className="text-7xl md:text-[9rem] font-black uppercase text-center leading-none tracking-tight"
+    style={{ 
+      fontFamily: "'Benguiat', serif", 
+      color: "transparent",
+      WebkitTextStroke: "2px #B20600",
+      textShadow: "0 0 100px #B20600, 0 0 70px #B20600"
+    }}
+  >
             UPSIDE DOWN
           </h1>
           <motion.h2 
