@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Brain, Radio, Smartphone, Network, Sword } from "lucide-react";
 
 const tracks = [
@@ -18,7 +18,7 @@ const tracks = [
     vibe: "Architecting the Frequency",
     icon: Radio,
     description: "Build the web infrastructure",
-    color: "#8B0000",
+    color: "#FF0000",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const tracks = [
     vibe: "Mobile Transmissions",
     icon: Smartphone,
     description: "Create powerful mobile applications",
-    color: "#6B0000",
+    color: "#B20600",
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ const tracks = [
     vibe: "Decoding the Shadow",
     icon: Network,
     description: "Uncover patterns in the data",
-    color: "#5B0000",
+    color: "#8B0000",
   },
   {
     id: 5,
@@ -45,37 +45,42 @@ const tracks = [
     vibe: "The Ultimate Quest",
     icon: Sword,
     description: "Forge your own path",
-    color: "#B20600",
+    color: "#FF0000",
   },
 ];
 
 export function TracksSection() {
   return (
-    <section className="relative min-h-screen py-20 px-4">
-      {/* Section Title */}
+    <section className="relative min-h-screen py-20 px-4 bg-[#050505] overflow-hidden">
+      
+      {/* 1. Section Title - Clean White + Subtle Glow */}
       <motion.div
-        className="text-center mb-16"
+        className="text-center mb-16 relative z-10"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
         <h2
-          className="text-6xl md:text-7xl mb-4 tracking-wider"
+          className="text-5xl md:text-7xl mb-4 tracking-wider leading-tight font-normal"
           style={{
             fontFamily: "'Nosifer', cursive",
-            textShadow: "0 0 20px #B20600, 0 0 40px #4E0000",
+            color: "#FFFFFF",
+            textShadow: "0 0 8px rgba(178, 6, 0, 0.8), 0 0 20px rgba(178, 6, 0, 0.4)",
           }}
         >
           THE CHOSEN PARTY
         </h2>
-        <p className="text-xl text-gray-400" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-          Select your domain. Choose your destiny.
+        <p 
+          className="text-sm md:text-base text-gray-400 tracking-[0.3em] uppercase" 
+          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          Select your domain. <span className="text-red-600">Choose your destiny.</span>
         </p>
       </motion.div>
 
-      {/* Tracks Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* 2. Tracks Grid */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
         {tracks.map((track, index) => (
           <motion.div
             key={track.id}
@@ -87,167 +92,96 @@ export function TracksSection() {
           >
             {/* Card Container */}
             <motion.div
-              className="relative bg-[#0a0a0a] border-2 border-[#4E0000] rounded-lg p-8 h-full overflow-hidden cursor-pointer"
+              className="relative bg-black/40 border border-red-900/30 rounded-sm p-8 h-full overflow-hidden cursor-pointer backdrop-blur-sm"
               whileHover={{
-                borderColor: track.color,
-                boxShadow: `0 0 40px ${track.color}40`,
+                borderColor: "#FF0000",
+                backgroundColor: "rgba(10, 10, 10, 0.8)",
+                y: -5
               }}
               transition={{ duration: 0.3 }}
             >
-              {/* Glowing Background Effect */}
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
-                style={{
-                  background: `radial-gradient(circle at 50% 50%, ${track.color}, transparent)`,
-                }}
-              />
-
-              {/* Character Silhouette */}
-              <div className="relative mb-6">
-                <motion.div
-                  className="w-20 h-20 mx-auto relative"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ duration: 0.3 }}
+              {/* Character Icon - Clean */}
+              <div className="relative mb-8 text-center">
+                <motion.div 
+                  className="w-16 h-16 mx-auto relative flex items-center justify-center"
+                  whileHover={{ scale: 1.1 }}
                 >
-                  {/* Icon with glow */}
-                  <div
-                    className="absolute inset-0 rounded-full opacity-30"
-                    style={{
-                      background: `radial-gradient(circle, ${track.color} 0%, transparent 70%)`,
-                      filter: "blur(10px)",
-                    }}
-                  />
                   <track.icon
-                    className="w-full h-full relative z-10"
+                    size={48}
                     style={{
-                      color: track.color,
+                      color: "#FFFFFF",
                       filter: `drop-shadow(0 0 8px ${track.color})`,
                     }}
                   />
-
-                  {/* Special effect for Eleven Track (blood drip) */}
                   {track.id === 1 && (
-                    <motion.div
-                      className="absolute top-full left-1/2 -translate-x-1/2 w-1 bg-[#B20600] rounded-full"
-                      initial={{ height: 0, opacity: 0 }}
-                      whileInView={{ height: 30, opacity: 0.8 }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                      }}
-                      style={{
-                        boxShadow: "0 0 10px #B20600",
-                      }}
+                    <motion.div 
+                      className="absolute top-[90%] left-1/2 w-[1px] bg-red-600"
+                      animate={{ height: [0, 20, 0], opacity: [0, 1, 0] }}
+                      transition={{ duration: 2.5, repeat: Infinity }}
                     />
                   )}
                 </motion.div>
               </div>
 
-              {/* Track Name */}
+              {/* Track Name - Clean & Sharp */}
               <h3
-                className="text-2xl mb-2 text-center tracking-wide"
+                className="text-3xl mb-4 text-center tracking-wide font-normal"
                 style={{
                   fontFamily: "'Creepster', cursive",
-                  color: track.color,
+                  color: "#FFFFFF",
                   textShadow: `0 0 10px ${track.color}`,
                 }}
               >
                 {track.name}
               </h3>
 
-              {/* Domain Badge */}
-              <div className="flex justify-center mb-4">
+              {/* Domain Badge - Minimalist */}
+              <div className="flex justify-center mb-6">
                 <span
-                  className="px-4 py-1 border rounded-full text-sm tracking-wider"
-                  style={{
-                    borderColor: track.color,
-                    color: track.color,
-                    fontFamily: "'JetBrains Mono', monospace",
-                    boxShadow: `0 0 10px ${track.color}40`,
-                  }}
+                  className="px-4 py-1 border border-red-900/50 bg-red-950/20 rounded-full text-[10px] tracking-[0.2em] uppercase text-gray-300 font-mono"
                 >
                   {track.domain}
                 </span>
               </div>
 
-              {/* Vibe Quote */}
+              {/* Vibe Quote - High Contrast */}
               <p
-                className="text-center text-gray-400 italic mb-4"
+                className="text-center text-white/90 italic mb-4 text-xs tracking-widest leading-relaxed"
                 style={{ fontFamily: "'JetBrains Mono', monospace" }}
               >
                 "{track.vibe}"
               </p>
 
-              {/* Description */}
-              <p className="text-center text-gray-500 text-sm">{track.description}</p>
+              {/* Description - Clean Gray */}
+              <p className="text-center text-gray-500 text-[11px] leading-relaxed font-normal px-2">
+                {track.description}
+              </p>
 
-              {/* Animated Border Effect */}
-              <motion.div
-                className="absolute inset-0 rounded-lg pointer-events-none"
-                style={{
-                  border: `1px solid ${track.color}`,
-                  opacity: 0,
-                }}
-                whileHover={{
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-
-              {/* Corner Decorations */}
-              <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 opacity-50" style={{ borderColor: track.color }} />
-              <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 opacity-50" style={{ borderColor: track.color }} />
-              <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 opacity-50" style={{ borderColor: track.color }} />
-              <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 opacity-50" style={{ borderColor: track.color }} />
+              {/* Minimal Border Corners */}
+              <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-red-900/50" />
+              <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-red-900/50" />
+              <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-red-900/50" />
+              <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-red-900/50" />
             </motion.div>
-
-            {/* Floating spores around card */}
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 rounded-full"
-                style={{
-                  backgroundColor: track.color,
-                  left: `${20 + i * 15}%`,
-                  top: `${10 + i * 10}%`,
-                  filter: "blur(1px)",
-                }}
-                animate={{
-                  y: [-10, 10, -10],
-                  opacity: [0.2, 0.6, 0.2],
-                }}
-                transition={{
-                  duration: 3 + i * 0.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            ))}
           </motion.div>
         ))}
       </div>
 
-      {/* Background Spores */}
-      {[...Array(30)].map((_, i) => (
+      {/* 3. Subtle Spores */}
+      {[...Array(15)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 bg-[#4E0000] rounded-full"
+          className="absolute w-[1px] h-[1px] bg-red-800 rounded-full"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
-            filter: "blur(1px)",
           }}
           animate={{
-            y: [0, -20, 0],
+            y: [0, -30, 0],
             opacity: [0.1, 0.4, 0.1],
           }}
           transition={{
-            duration: 4 + Math.random() * 2,
+            duration: 6 + Math.random() * 2,
             repeat: Infinity,
             delay: Math.random() * 2,
           }}
